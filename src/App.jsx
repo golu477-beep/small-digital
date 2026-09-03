@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 const palette = {
   ink: "#1A1F2B",
@@ -84,6 +84,7 @@ const testimonials = [
 function Nav() {
   return (
     <header
+      className="site-header"
       style={{
         display: "flex",
         alignItems: "center",
@@ -104,6 +105,7 @@ function Nav() {
       </div>
 
       <nav
+        className="site-nav"
         style={{
           display: "flex",
           gap: 32,
@@ -141,6 +143,7 @@ function Nav() {
       </nav>
 
       <a
+        className="nav-cta"
         href="#contact"
         style={{
           background: palette.navy,
@@ -160,6 +163,7 @@ function Nav() {
 function Hero() {
   return (
     <section
+      className="hero-section"
       style={{
         display: "grid",
         gridTemplateColumns: "1.1fr 0.9fr",
@@ -168,7 +172,7 @@ function Hero() {
         alignItems: "center",
       }}
     >
-      <div>
+      <div className="hero-copy">
         <p
           style={{
             color: palette.marigold,
@@ -207,7 +211,7 @@ function Hero() {
           plain language, reported every month.
         </p>
 
-        <div style={{ display: "flex", gap: 16 }}>
+        <div className="hero-actions" style={{ display: "flex", gap: 16 }}>
           <a
             href="#contact"
             style={{
@@ -239,6 +243,7 @@ function Hero() {
       </div>
 
       <div
+        className="stats-panel"
         style={{
           background: palette.navy,
           borderRadius: 4,
@@ -296,7 +301,7 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" style={{ padding: "40px 48px 96px" }}>
+    <section className="content-section services-section" id="services" style={{ padding: "40px 48px 96px" }}>
       <h2
         style={{
           fontFamily: "'Fraunces', serif",
@@ -308,9 +313,10 @@ function Services() {
         What we handle for you
       </h2>
 
-      <div>
+      <div className="services-list">
         {services.map((s, i) => (
           <div
+            className="service-row"
             key={s.name}
             style={{
               display: "grid",
@@ -353,6 +359,7 @@ function Services() {
 function Process() {
   return (
     <section
+      className="content-section process-section"
       id="process"
       style={{
         padding: "40px 48px 96px",
@@ -371,6 +378,7 @@ function Process() {
       </h2>
 
       <div
+        className="process-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
@@ -422,7 +430,7 @@ function Stories() {
   const t = testimonials[active];
 
   return (
-    <section id="stories" style={{ padding: "40px 48px 96px" }}>
+    <section className="content-section stories-section" id="stories" style={{ padding: "40px 48px 96px" }}>
       <h2
         style={{
           fontFamily: "'Fraunces', serif",
@@ -434,7 +442,7 @@ function Stories() {
         Business owners we work with
       </h2>
 
-      <div style={{ maxWidth: 640 }}>
+      <div className="story-copy" style={{ maxWidth: 640 }}>
         <p
           style={{
             fontFamily: "'Fraunces', serif",
@@ -548,6 +556,7 @@ Please contact this customer.`;
 
   return (
     <section
+      className="contact-section"
       id="contact"
       style={{
         background: palette.navy,
@@ -559,7 +568,7 @@ Please contact this customer.`;
       }}
     >
       {/* LEFT SIDE */}
-      <div>
+      <div className="contact-copy">
         <h2
           style={{
             fontFamily: "'Fraunces', serif",
@@ -585,6 +594,7 @@ Please contact this customer.`;
 
       {/* RIGHT SIDE FORM */}
       <form
+        className="contact-form"
         onSubmit={handleSubmit}
         style={{
           display: "flex",
@@ -709,6 +719,7 @@ Please contact this customer.`;
 function Footer() {
   return (
     <footer
+      className="site-footer"
       style={{
         padding: "28px 48px",
         display: "flex",
