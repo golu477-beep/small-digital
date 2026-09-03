@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 
 const palette = {
@@ -36,22 +37,26 @@ const process = [
   {
     step: "01",
     title: "Business audit",
-    detail: "We study your customers, competitors, and current online presence before proposing anything.",
+    detail:
+      "We study your customers, competitors, and current online presence before proposing anything.",
   },
   {
     step: "02",
     title: "90-day plan",
-    detail: "A written roadmap with monthly goals, channels, and budget — no guesswork, no jargon.",
+    detail:
+      "A written roadmap with monthly goals, channels, and budget — no guesswork, no jargon.",
   },
   {
     step: "03",
     title: "Build and launch",
-    detail: "Pages, campaigns, and content go live in phases so you see movement from week one.",
+    detail:
+      "Pages, campaigns, and content go live in phases so you see movement from week one.",
   },
   {
     step: "04",
     title: "Track and improve",
-    detail: "Monthly reports in plain language, with changes made based on what's actually working.",
+    detail:
+      "Monthly reports in plain language, with changes made based on what's actually working.",
   },
 ];
 
@@ -84,18 +89,57 @@ function Nav() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "28px 48px",
-        borderBottom: `1px solid ${palette.line}`,
+        borderBottom: "1px solid " + palette.line,
       }}
     >
-      <div style={{ fontFamily: "'Fraunces', serif", fontSize: 22, color: palette.navy, fontWeight: 600 }}>
-        Vistaar Digital
+      <div
+        style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: 22,
+          color: palette.navy,
+          fontWeight: 600,
+        }}
+      >
+        Small-Digital
       </div>
-      <nav style={{ display: "flex", gap: 32, fontSize: 15, color: palette.ink }}>
-        <a href="#services" style={{ color: "inherit", textDecoration: "none" }}>Services</a>
-        <a href="#process" style={{ color: "inherit", textDecoration: "none" }}>How we work</a>
-        <a href="#stories" style={{ color: "inherit", textDecoration: "none" }}>Stories</a>
-        <a href="#contact" style={{ color: "inherit", textDecoration: "none" }}>Contact</a>
+
+      <nav
+        style={{
+          display: "flex",
+          gap: 32,
+          fontSize: 15,
+          color: palette.ink,
+        }}
+      >
+        <a
+          href="#services"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          Services
+        </a>
+
+        <a
+          href="#process"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          How we work
+        </a>
+
+        <a
+          href="#stories"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          Stories
+        </a>
+
+        <a
+          href="#contact"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
+          Contact
+        </a>
       </nav>
+
       <a
         href="#contact"
         style={{
@@ -125,9 +169,17 @@ function Hero() {
       }}
     >
       <div>
-        <p style={{ color: palette.marigold, fontSize: 15, marginBottom: 18, letterSpacing: "0.02em" }}>
+        <p
+          style={{
+            color: palette.marigold,
+            fontSize: 15,
+            marginBottom: 18,
+            letterSpacing: "0.02em",
+          }}
+        >
           Digital marketing for Indian businesses
         </p>
+
         <h1
           style={{
             fontFamily: "'Fraunces', serif",
@@ -140,10 +192,21 @@ function Hero() {
         >
           Bring your dukaan and your business online, without the confusion.
         </h1>
-        <p style={{ fontSize: 17, color: palette.muted, maxWidth: 480, lineHeight: 1.7, marginBottom: 36 }}>
-          We help shop owners, manufacturers, and service businesses across India get found,
-          get enquiries, and get orders online — explained in plain language, reported every month.
+
+        <p
+          style={{
+            fontSize: 17,
+            color: palette.muted,
+            maxWidth: 480,
+            lineHeight: 1.7,
+            marginBottom: 36,
+          }}
+        >
+          We help shop owners, manufacturers, and service businesses across
+          India get found, get enquiries, and get orders online — explained in
+          plain language, reported every month.
         </p>
+
         <div style={{ display: "flex", gap: 16 }}>
           <a
             href="#contact"
@@ -158,10 +221,11 @@ function Hero() {
           >
             Get a free audit
           </a>
+
           <a
             href="#services"
             style={{
-              border: `1px solid ${palette.line}`,
+              border: "1px solid " + palette.line,
               color: palette.ink,
               padding: "13px 26px",
               borderRadius: 3,
@@ -173,6 +237,7 @@ function Hero() {
           </a>
         </div>
       </div>
+
       <div
         style={{
           background: palette.navy,
@@ -181,7 +246,16 @@ function Hero() {
           color: "#fff",
         }}
       >
-        <p style={{ fontSize: 13, color: "#BFC9DC", marginBottom: 20 }}>This quarter, across our clients</p>
+        <p
+          style={{
+            fontSize: 13,
+            color: "#BFC9DC",
+            marginBottom: 20,
+          }}
+        >
+          This quarter, across our clients
+        </p>
+
         {[
           ["Average enquiry growth", "2.3x"],
           ["Cities served", "18"],
@@ -196,8 +270,23 @@ function Hero() {
               borderTop: "1px solid rgba(255,255,255,0.14)",
             }}
           >
-            <span style={{ fontSize: 14, color: "#D8DEEA" }}>{label}</span>
-            <span style={{ fontFamily: "'Fraunces', serif", fontSize: 22 }}>{value}</span>
+            <span
+              style={{
+                fontSize: 14,
+                color: "#D8DEEA",
+              }}
+            >
+              {label}
+            </span>
+
+            <span
+              style={{
+                fontFamily: "'Fraunces', serif",
+                fontSize: 22,
+              }}
+            >
+              {value}
+            </span>
           </div>
         ))}
       </div>
@@ -208,9 +297,17 @@ function Hero() {
 function Services() {
   return (
     <section id="services" style={{ padding: "40px 48px 96px" }}>
-      <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 30, color: palette.navy, marginBottom: 48 }}>
+      <h2
+        style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: 30,
+          color: palette.navy,
+          marginBottom: 48,
+        }}
+      >
         What we handle for you
       </h2>
+
       <div>
         {services.map((s, i) => (
           <div
@@ -220,12 +317,30 @@ function Services() {
               gridTemplateColumns: "280px 1fr",
               gap: 32,
               padding: "28px 0",
-              borderTop: i === 0 ? `1px solid ${palette.line}` : "none",
-              borderBottom: `1px solid ${palette.line}`,
+              borderTop: i === 0 ? "1px solid " + palette.line : "none",
+              borderBottom: "1px solid " + palette.line,
             }}
           >
-            <h3 style={{ fontSize: 19, color: palette.ink, margin: 0, fontWeight: 600 }}>{s.name}</h3>
-            <p style={{ fontSize: 15.5, color: palette.muted, margin: 0, lineHeight: 1.7, maxWidth: 560 }}>
+            <h3
+              style={{
+                fontSize: 19,
+                color: palette.ink,
+                margin: 0,
+                fontWeight: 600,
+              }}
+            >
+              {s.name}
+            </h3>
+
+            <p
+              style={{
+                fontSize: 15.5,
+                color: palette.muted,
+                margin: 0,
+                lineHeight: 1.7,
+                maxWidth: 560,
+              }}
+            >
               {s.detail}
             </p>
           </div>
@@ -237,18 +352,64 @@ function Services() {
 
 function Process() {
   return (
-    <section id="process" style={{ padding: "40px 48px 96px", background: palette.cream }}>
-      <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 30, color: palette.navy, marginBottom: 48 }}>
+    <section
+      id="process"
+      style={{
+        padding: "40px 48px 96px",
+        background: palette.cream,
+      }}
+    >
+      <h2
+        style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: 30,
+          color: palette.navy,
+          marginBottom: 48,
+        }}
+      >
         How an engagement runs
       </h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28 }}>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 28,
+        }}
+      >
         {process.map((p) => (
           <div key={p.step}>
-            <div style={{ fontFamily: "'Fraunces', serif", fontSize: 26, color: palette.marigold, marginBottom: 14 }}>
+            <div
+              style={{
+                fontFamily: "'Fraunces', serif",
+                fontSize: 26,
+                color: palette.marigold,
+                marginBottom: 14,
+              }}
+            >
               {p.step}
             </div>
-            <h3 style={{ fontSize: 17, color: palette.ink, margin: "0 0 10px" }}>{p.title}</h3>
-            <p style={{ fontSize: 14.5, color: palette.muted, lineHeight: 1.7, margin: 0 }}>{p.detail}</p>
+
+            <h3
+              style={{
+                fontSize: 17,
+                color: palette.ink,
+                margin: "0 0 10px",
+              }}
+            >
+              {p.title}
+            </h3>
+
+            <p
+              style={{
+                fontSize: 14.5,
+                color: palette.muted,
+                lineHeight: 1.7,
+                margin: 0,
+              }}
+            >
+              {p.detail}
+            </p>
           </div>
         ))}
       </div>
@@ -259,11 +420,20 @@ function Process() {
 function Stories() {
   const [active, setActive] = useState(0);
   const t = testimonials[active];
+
   return (
     <section id="stories" style={{ padding: "40px 48px 96px" }}>
-      <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 30, color: palette.navy, marginBottom: 40 }}>
+      <h2
+        style={{
+          fontFamily: "'Fraunces', serif",
+          fontSize: 30,
+          color: palette.navy,
+          marginBottom: 40,
+        }}
+      >
         Business owners we work with
       </h2>
+
       <div style={{ maxWidth: 640 }}>
         <p
           style={{
@@ -276,19 +446,40 @@ function Stories() {
         >
           "{t.quote}"
         </p>
-        <p style={{ fontSize: 15, color: palette.navy, fontWeight: 600, margin: 0 }}>{t.name}</p>
-        <p style={{ fontSize: 14, color: palette.muted, margin: "2px 0 24px" }}>{t.role}</p>
+
+        <p
+          style={{
+            fontSize: 15,
+            color: palette.navy,
+            fontWeight: 600,
+            margin: 0,
+          }}
+        >
+          {t.name}
+        </p>
+
+        <p
+          style={{
+            fontSize: 14,
+            color: palette.muted,
+            margin: "2px 0 24px",
+          }}
+        >
+          {t.role}
+        </p>
+
         <div style={{ display: "flex", gap: 10 }}>
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              aria-label={`Show story ${i + 1}`}
+              aria-label={"Show story " + (i + 1)}
               style={{
                 width: 28,
                 height: 3,
                 border: "none",
-                background: i === active ? palette.marigold : palette.line,
+                background:
+                  i === active ? palette.marigold : palette.line,
                 cursor: "pointer",
                 padding: 0,
               }}
@@ -302,6 +493,59 @@ function Stories() {
 
 function Contact() {
   const [sent, setSent] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    business: "",
+    phone: "",
+  });
+
+  // =========================================
+  // ADMIN WHATSAPP NUMBER
+  // Yahan apna WhatsApp number daalo
+  // India ke liye: 91 + 10 digit number
+  // Example: 919876543210
+  // =========================================
+  const adminWhatsApp = "917070414390";
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const message = `Hello Admin 👋
+
+New Business Enquiry
+
+👤 Name: ${formData.name}
+🏢 Business: ${formData.business}
+📱 Phone/WhatsApp: ${formData.phone}
+
+Please contact this customer.`;
+
+    const whatsappURL =
+      `https://wa.me/${adminWhatsApp}?text=` +
+      encodeURIComponent(message);
+
+    // WhatsApp open hoga
+    window.open(whatsappURL, "_blank");
+
+    // Success message
+    setSent(true);
+
+    // Form clear
+    setFormData({
+      name: "",
+      business: "",
+      phone: "",
+    });
+  };
+
   return (
     <section
       id="contact"
@@ -314,29 +558,82 @@ function Contact() {
         gap: 64,
       }}
     >
+      {/* LEFT SIDE */}
       <div>
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 32, marginBottom: 18 }}>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontSize: 32,
+            marginBottom: 18,
+          }}
+        >
           Tell us about your business
         </h2>
-        <p style={{ fontSize: 15.5, color: "#C7CEDD", lineHeight: 1.7, maxWidth: 380 }}>
-          Share a few details and we'll come back with a free audit of your current
-          online presence within two working days — no obligation.
+
+        <p
+          style={{
+            fontSize: 15.5,
+            color: "#C7CEDD",
+            lineHeight: 1.7,
+            maxWidth: 380,
+          }}
+        >
+          Share a few details and we'll come back with a free audit of your
+          current online presence within two working days — no obligation.
         </p>
       </div>
+
+      {/* RIGHT SIDE FORM */}
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSent(true);
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 14,
         }}
-        style={{ display: "flex", flexDirection: "column", gap: 14 }}
       >
         {sent ? (
-          <p style={{ fontSize: 16 }}>Thanks — we'll reach out shortly.</p>
+          <div>
+            <p style={{ fontSize: 16 }}>
+              Thanks — we'll reach out shortly.
+            </p>
+
+            <p
+              style={{
+                fontSize: 14,
+                color: "#C7CEDD",
+                lineHeight: 1.6,
+              }}
+            >
+              Your enquiry has been prepared for WhatsApp.
+            </p>
+
+            <button
+              type="button"
+              onClick={() => setSent(false)}
+              style={{
+                marginTop: 10,
+                background: palette.marigold,
+                color: "#fff",
+                border: "none",
+                padding: "12px 20px",
+                borderRadius: 3,
+                cursor: "pointer",
+              }}
+            >
+              Submit Another Enquiry
+            </button>
+          </div>
         ) : (
           <>
+            {/* NAME */}
             <input
               required
+              name="name"
+              type="text"
               placeholder="Your name"
+              value={formData.name}
+              onChange={handleChange}
               style={{
                 padding: "12px 14px",
                 border: "1px solid rgba(255,255,255,0.3)",
@@ -344,11 +641,18 @@ function Contact() {
                 color: "#fff",
                 borderRadius: 3,
                 fontSize: 14,
+                outline: "none",
               }}
             />
+
+            {/* BUSINESS NAME */}
             <input
               required
+              name="business"
+              type="text"
               placeholder="Business name"
+              value={formData.business}
+              onChange={handleChange}
               style={{
                 padding: "12px 14px",
                 border: "1px solid rgba(255,255,255,0.3)",
@@ -356,12 +660,18 @@ function Contact() {
                 color: "#fff",
                 borderRadius: 3,
                 fontSize: 14,
+                outline: "none",
               }}
             />
+
+            {/* PHONE */}
             <input
               required
+              name="phone"
               type="tel"
               placeholder="Phone or WhatsApp number"
+              value={formData.phone}
+              onChange={handleChange}
               style={{
                 padding: "12px 14px",
                 border: "1px solid rgba(255,255,255,0.3)",
@@ -369,8 +679,11 @@ function Contact() {
                 color: "#fff",
                 borderRadius: 3,
                 fontSize: 14,
+                outline: "none",
               }}
             />
+
+            {/* SUBMIT BUTTON */}
             <button
               type="submit"
               style={{
@@ -412,11 +725,18 @@ function Footer() {
 
 export default function App() {
   return (
-    <div style={{ fontFamily: "'Work Sans', sans-serif", background: "#fff", color: palette.ink }}>
+    <div
+      style={{
+        fontFamily: "'Work Sans', sans-serif",
+        background: "#fff",
+        color: palette.ink,
+      }}
+    >
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap"
       />
+
       <Nav />
       <Hero />
       <Services />
@@ -427,3 +747,4 @@ export default function App() {
     </div>
   );
 }
+
