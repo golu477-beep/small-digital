@@ -1,9 +1,7 @@
-import React from "react";
-
 export default function Home({ onNavigate }) {
   return (
     <div className="space-y-20 py-8">
-      {/* Hero Section */}
+     
       <section className="text-center max-w-3xl mx-auto space-y-6">
         <span className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-400 bg-teal-950/60 border border-teal-800/50 rounded-full">
           Digital Marketing for Indian Businesses
@@ -30,7 +28,7 @@ export default function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* Services Grid */}
+   
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {[
           { title: "Search Visibility", desc: "Get found on Google when local customers search for what you sell." },

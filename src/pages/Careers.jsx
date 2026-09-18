@@ -1,12 +1,45 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import * as XLSX from "xlsx"; 
 
 export default function Careers() {
   const [formData, setFormData] = useState({ name: "", role: "", resumeLink: "" });
   const [submitted, setSubmitted] = useState(false);
 
+  const [applications, setApplications] = useState([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+
+    const updatedList = [...applications, { ...formData, date: new Date().toLocaleDateString() }];
+    setApplications(updatedList);
+
     setSubmitted(true);
+    setFormData({ name: "", role: "", resumeLink: "" }); 
+  };
+
+
+  const exportToExcel = () => {
+    if (applications.length === 0) {
+      alert("Koi data export karne ke liye nahi hai!");
+      return;
+    }
+
+
+    const worksheetData = applications.map((app, index) => ({
+      "S.No": index + 1,
+      "Full Name": app.name,
+      "Role": app.role,
+      "Resume Link": app.resumeLink,
+      "Date Submitted": app.date,
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Applications");
+
+   
+    XLSX.writeFile(workbook, "Job_Applications.xlsx");
   };
 
   return (
@@ -22,12 +55,14 @@ export default function Careers() {
             <div className="text-teal-400 text-4xl font-bold">✓</div>
             <h3 className="text-xl font-bold text-white">Application Submitted!</h3>
             <p className="text-slate-400 text-sm">We will review your resume link and get back to you soon.</p>
-            <button
-              onClick={() => setSubmitted(false)}
-              className="mt-4 px-4 py-2 bg-slate-800 text-white rounded-lg text-sm"
-            >
-              Submit Another Application
-            </button>
+            <div className="flex gap-3 justify-center mt-4">
+              <button
+                onClick={() => setSubmitted(false)}
+                className="px-4 py-2 bg-slate-800 text-white rounded-lg text-sm hover:bg-slate-700"
+              >
+                Submit Another Application
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -55,7 +90,6 @@ export default function Careers() {
               />
             </div>
 
-            {/* Resume Link Field */}
             <div className="bg-slate-950/60 p-4 rounded-xl border border-teal-500/30">
               <label className="block text-xs font-semibold uppercase text-teal-300 mb-1">
                 Resume Link (Google Drive / Dropbox) *
@@ -80,6 +114,19 @@ export default function Careers() {
               Submit Application
             </button>
           </form>
+        )}
+
+      
+        {applications.length > 0 && (
+          <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+            <p className="text-xs text-slate-400 mb-3">Total Submissions: {applications.length}</p>
+            <button
+              onClick={exportToExcel}
+              className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-xl text-xs flex items-center justify-center gap-2 mx-auto"
+            >
+              📊 Download Submissions Excel (.xlsx)
+            </button>
+          </div>
         )}
       </div>
     </div>

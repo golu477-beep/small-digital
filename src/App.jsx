@@ -812,61 +812,35 @@
 //   );
 // }
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Home from "./pages/Home";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import Navbar from "./pages/Nav";
 
 export default function App() {
   const [activePage, setActivePage] = useState("home");
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
-      {/* Background Effect */}
+
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 -right-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4">
-        {/* Navbar */}
-        <header className="flex items-center justify-between py-6 border-b border-slate-800/80">
-          <div
-            onClick={() => setActivePage("home")}
-            className="text-xl font-bold text-white cursor-pointer tracking-wide"
-          >
-            Small<span className="text-teal-400">-Digital</span>
-          </div>
+      <Navbar onNavigate={setActivePage} />
 
-          <nav className="flex items-center gap-2 bg-slate-900/80 p-1.5 rounded-xl border border-slate-800">
-            {[
-              { id: "home", label: "Home" },
-              { id: "careers", label: "Careers" },
-              { id: "contact", label: "Contact" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActivePage(tab.id)}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-                  activePage === tab.id
-                    ? "bg-indigo-600 text-white shadow-md"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-        </header>
+      <div className="relative max-w-6xl mx-auto px-4 pt-24">
 
-        {/* Page Switcher */}
+  
         <main className="py-6">
           {activePage === "home" && <Home onNavigate={(page) => setActivePage(page)} />}
           {activePage === "careers" && <Careers />}
           {activePage === "contact" && <Contact />}
         </main>
 
-        {/* Footer */}
+    
         <footer className="py-8 text-center border-t border-slate-800/80 text-slate-500 text-xs">
           © {new Date().getFullYear()} Small-Digital. Patna · Delhi · Bengaluru
         </footer>
