@@ -8,10 +8,19 @@ import {
   CheckCircle,
   Cpu,
   ChevronDown,
+  Menu,
+  X,
 } from "lucide-react";
 
 export default function Navbar({ onNavigate }) {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const navigate = (page) => {
+    onNavigate(page);
+    setIsMobileMenuOpen(false);
+    setIsServicesOpen(false);
+  };
 
 
   const servicesData = [
@@ -69,8 +78,8 @@ export default function Navbar({ onNavigate }) {
 
        
         <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <button onClick={() => onNavigate("home")} className="text-slate-300 hover:text-white transition">Home</button>
-          <a href="#" className="text-slate-300 hover:text-white transition">About</a>
+          <button onClick={() => navigate("home")} className="text-slate-300 hover:text-white transition">Home</button>
+          <button onClick={() => navigate("about")} className="text-slate-300 hover:text-white transition">About</button>
 
           <div
             className="relative"
@@ -94,7 +103,7 @@ export default function Navbar({ onNavigate }) {
                       Choose any service to view details and sub-services
                     </p>
                   </div>
-                  <button className="text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">
+                  <button onClick={() => navigate("services")} className="text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">
                     View All Services
                   </button>
                 </div>
@@ -130,17 +139,41 @@ export default function Navbar({ onNavigate }) {
             )}
           </div>
 
-          <a href="#" className="text-slate-300 hover:text-white transition">Projects</a>
-          <a href="#" className="text-slate-300 hover:text-white transition">Blog</a>
-          <button onClick={() => onNavigate("careers")} className="bg-slate-800 px-3 py-1.5 rounded-lg text-slate-200 hover:bg-slate-700 transition">Careers</button>
-          <a href="#" className="text-slate-300 hover:text-white transition">Training</a>
-          <button onClick={() => onNavigate("contact")} className="text-slate-300 hover:text-white transition">Contact</button>
+          <button onClick={() => navigate("projects")} className="text-slate-300 hover:text-white transition">Projects</button>
+          <button onClick={() => navigate("blog")} className="text-slate-300 hover:text-white transition">Blog</button>
+          <button onClick={() => navigate("careers")} className="bg-slate-800 px-3 py-1.5 rounded-lg text-slate-200 hover:bg-slate-700 transition">Careers</button>
+          <button onClick={() => navigate("training")} className="text-slate-300 hover:text-white transition">Training</button>
+          <button onClick={() => navigate("contact")} className="text-slate-300 hover:text-white transition">Contact</button>
         </div>
 
-        <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 rounded-full text-sm transition-all shadow-lg shadow-cyan-500/20">
+        <button onClick={() => navigate("contact")} className="hidden sm:block bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-4 py-2 rounded-full text-sm transition-all shadow-lg shadow-cyan-500/20">
           Book a Consultation
         </button>
+
+        <button
+          type="button"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+          className="md:hidden rounded-lg p-2 text-slate-200 hover:bg-slate-800"
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-slate-800 bg-[#0b101d] px-6 py-4">
+          <div className="flex flex-col gap-1 text-sm font-medium">
+            <button onClick={() => navigate("home")} className="py-3 text-left text-slate-200">Home</button>
+            <button onClick={() => navigate("about")} className="py-3 text-left text-slate-200">About</button>
+            <button onClick={() => navigate("services")} className="py-3 text-left text-teal-300">Services</button>
+            <button onClick={() => navigate("projects")} className="py-3 text-left text-slate-200">Projects</button>
+            <button onClick={() => navigate("blog")} className="py-3 text-left text-slate-200">Blog</button>
+            <button onClick={() => navigate("careers")} className="py-3 text-left text-slate-200">Careers</button>
+            <button onClick={() => navigate("training")} className="py-3 text-left text-slate-200">Training</button>
+            <button onClick={() => navigate("contact")} className="py-3 text-left text-slate-200">Contact</button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

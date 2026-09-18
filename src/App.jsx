@@ -817,6 +817,7 @@ import Home from "./pages/Home";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Navbar from "./pages/Nav";
+import InfoPage from "./pages/InfoPage";
 
 export default function App() {
   const [activePage, setActivePage] = useState("home");
@@ -836,6 +837,9 @@ export default function App() {
   
         <main className="py-6">
           {activePage === "home" && <Home onNavigate={(page) => setActivePage(page)} />}
+          {["about", "services", "projects", "blog", "training"].includes(activePage) && (
+            <InfoPage page={activePage} />
+          )}
           {activePage === "careers" && <Careers />}
           {activePage === "contact" && <Contact />}
         </main>
