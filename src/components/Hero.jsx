@@ -5,7 +5,7 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center px-6 py-20 bg-white">
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
 
-        {/* Left Content */}
+        
         <div>
           <p className="text-blue-600 font-semibold tracking-widest text-sm mb-4">
             WEB DEVELOPMENT SERVICES
@@ -24,7 +24,7 @@ const Hero = () => {
             technologies.
           </p>
 
-          {/* Buttons */}
+       
           <div className="flex flex-wrap gap-4 mt-8">
 
             <a
@@ -43,7 +43,7 @@ const Hero = () => {
 
           </div>
 
-          {/* Small Features */}
+         
           <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-600">
             <span>✓ Responsive Design</span>
             <span>✓ Fast Website</span>
@@ -51,7 +51,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Side */}
+       
         <div className="flex justify-center">
           <div className="w-full max-w-md bg-gray-100 rounded-3xl p-8 shadow-xl">
 

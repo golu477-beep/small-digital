@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import contactHandler from './src/pages/api/user.js';
 
-const isProduction = globalThis.process.argv.includes('--production');
+const isProduction = globalThis.process.argv.includes('--production') || globalThis.process.env.NODE_ENV === 'production';
 const port = Number(globalThis.process?.env?.PORT) || 5173;
 const app = express();
 

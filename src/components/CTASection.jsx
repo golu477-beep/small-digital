@@ -12,7 +12,7 @@ export default function CTASection() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          {/* Primary Action Button */}
+    
           <a
             href="#contact"
             className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 text-center"
@@ -20,7 +20,7 @@ export default function CTASection() {
             Start Your Project Today →
           </a>
 
-          {/* Secondary Action Button */}
+  
           <a
             href="#portfolio"
             className="bg-transparent hover:bg-gray-800 text-gray-200 border border-gray-700 font-semibold text-lg px-8 py-4 rounded-xl transition-all text-center"

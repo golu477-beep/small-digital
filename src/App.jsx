@@ -818,6 +818,8 @@ import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Navbar from "./pages/Nav";
 import InfoPage from "./pages/InfoPage";
+import AboutPage from "./pages/About";
+import OurProjects from "./pages/Project";
 import Footer from "./pages/Footer";
 
 
@@ -840,9 +842,11 @@ export default function App() {
   
         <main className="py-6">
           {activePage === "home" && <Home onNavigate={(page) => setActivePage(page)} />}
-          {["about", "services", "projects", "blog", "training"].includes(activePage) && (
+          {["services", "blog", "training"].includes(activePage) && (
             <InfoPage page={activePage} />
           )}
+          {activePage === "about" && <AboutPage />}
+          {activePage === "projects" && <OurProjects />}
           {activePage === "careers" && <Careers />}
           {activePage === "contact" && <Contact />}
         </main>

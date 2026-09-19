@@ -59,7 +59,7 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* FAQ Prominent CTA Banner */}
+   
         <div className="bg-indigo-600 rounded-3xl p-8 text-center text-white shadow-xl">
           <h3 className="text-2xl font-bold mb-2">Still have questions?</h3>
           <p className="text-indigo-100 mb-6">We're here to help you turn your digital ideas into reality.</p>

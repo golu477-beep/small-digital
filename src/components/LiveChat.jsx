@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function LiveChat() {
-  // अपना फ़ोन नंबर (country code के साथ, बिना '+' के) यहाँ डालें
+
   const phoneNumber = "917070414390"; 
   const defaultMessage = encodeURIComponent("Hi Small Digital! I have an inquiry regarding your services.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${defaultMessage}`;
