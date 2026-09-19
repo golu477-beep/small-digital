@@ -106,11 +106,11 @@ export default function AboutPage() {
         <div>
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-[#121829] border border-purple-500/30 text-purple-300 text-xs px-3.5 py-1.5 rounded-full mb-6">
-            <span>💻</span> About Rayon Web Solutions
+            <span>💻</span> About SmallDigital Web Solutions
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6 leading-tight">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Rayon Web Solutions</span>
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">SmallDigital Web Solutions</span>
           </h1>
 
           <p className="text-gray-300 text-lg mb-4">
@@ -118,7 +118,7 @@ export default function AboutPage() {
           </p>
 
           <p className="text-gray-400 text-sm sm:text-base mb-4">
-            Founded in 2015, Rayon Web Solutions has grown from a small startup to a leading digital agency. Our mission is to bridge the gap between business goals and technological innovation, creating digital experiences that drive growth and success.
+            Founded in 2015, SmallDigital Web Solutions has grown from a small startup to a leading digital agency. Our mission is to bridge the gap between business goals and technological innovation, creating digital experiences that drive growth and success.
           </p>
 
           <p className="text-gray-400 text-sm sm:text-base mb-8">
