@@ -4,14 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node server.js",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "express": "^5.1.0",
+    "express": "^5.2.1",
     "lucide-react": "^1.47.0",
+    "mongodb": "^7.6.0",
+    "mongoose": "^9.10.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tailwindcss": "^4.3.3",

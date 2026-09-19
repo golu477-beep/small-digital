@@ -2,12 +2,32 @@ import { useState } from "react";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", business: "", phone: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const adminWhatsApp = "917070414390";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const msg = `Hello Admin 👋\n\nNew Business Enquiry:\n👤 Name: ${form.name}\n🏢 Business: ${form.business}\n📱 Phone: ${form.phone}`;
-    window.open(`https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`, "_blank");
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, formType: "business" }),
+      });
+      const result = await response.json();
+
+      if (!response.ok) throw new Error(result.message || "Unable to save your details");
+
+      const msg = `Hello Admin 👋\n\nNew Business Enquiry:\n👤 Name: ${form.name}\n🏢 Business: ${form.business}\n📱 Phone: ${form.phone}`;
+      window.open(`https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`, "_blank");
+    } catch (submitError) {
+      setError(submitError.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -53,10 +73,12 @@ export default function Contact() {
 
         <button
           type="submit"
+            disabled={isSubmitting}
           className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all text-sm shadow-lg shadow-indigo-600/30"
         >
-          Send on WhatsApp
+          {isSubmitting ? "Saving..." : "Send on WhatsApp"}
         </button>
+          {error && <p className="text-sm text-red-400 text-center" role="alert">{error}</p>}
       </form>
     </div>
   );

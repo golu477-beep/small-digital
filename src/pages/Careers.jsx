@@ -4,18 +4,35 @@ import * as XLSX from "xlsx";
 export default function Careers() {
   const [formData, setFormData] = useState({ name: "", role: "", resumeLink: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const [applications, setApplications] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setIsSubmitting(true);
+    setError("");
 
-    const updatedList = [...applications, { ...formData, date: new Date().toLocaleDateString() }];
-    setApplications(updatedList);
+    try {
+      const response = await fetch("/api/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, formType: "career" }),
+      });
+      const result = await response.json();
 
-    setSubmitted(true);
-    setFormData({ name: "", role: "", resumeLink: "" }); 
+      if (!response.ok) throw new Error(result.message || "Unable to submit application");
+
+      const updatedList = [...applications, { ...formData, date: new Date().toLocaleDateString() }];
+      setApplications(updatedList);
+      setSubmitted(true);
+      setFormData({ name: "", role: "", resumeLink: "" });
+    } catch (submitError) {
+      setError(submitError.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 
@@ -109,10 +126,12 @@ export default function Careers() {
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="w-full py-3 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold rounded-xl transition-all text-sm"
             >
-              Submit Application
+              {isSubmitting ? "Saving..." : "Submit Application"}
             </button>
+            {error && <p className="text-sm text-red-400 text-center" role="alert">{error}</p>}
           </form>
         )}
 
