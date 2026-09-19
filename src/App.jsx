@@ -820,6 +820,8 @@ import Navbar from "./pages/Nav";
 import InfoPage from "./pages/InfoPage";
 import Footer from "./pages/Footer";
 
+
+
 export default function App() {
   const [activePage, setActivePage] = useState("home");
 
@@ -830,7 +832,7 @@ export default function App() {
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 -right-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
       </div>
-
+      
       <Navbar onNavigate={setActivePage} />
 
       <div className="relative max-w-6xl mx-auto px-4 pt-24">
@@ -844,7 +846,8 @@ export default function App() {
           {activePage === "careers" && <Careers />}
           {activePage === "contact" && <Contact />}
         </main>
-
+      
+       
         <Footer />
         <footer className="py-8 text-center border-t border-slate-800/80 text-slate-500 text-xs">
           © {new Date().getFullYear()} Small-Digital. Patna · Delhi · Bengaluru

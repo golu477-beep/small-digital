@@ -1,3 +1,10 @@
+import Testimonials from '../components/Testimonials';
+import CaseStudies from '../components/CaseStudies';
+import FAQ from '../components/FAQ';
+import ContactForm from '../components/ContactForm';
+import LiveChat from '../components/LiveChat';
+import Hero from "../components/Hero";
+
 export default function Home({ onNavigate }) {
   return (
     <div className="space-y-20 py-8">
@@ -42,6 +49,15 @@ export default function Home({ onNavigate }) {
           </div>
         ))}
       </section>
+       <Hero />
+       <main className="relative">
+      <CaseStudies />
+      <Testimonials />
+      <FAQ />
+      <ContactForm />
+      <LiveChat />
+    </main>
+
     </div>
   );
 }
