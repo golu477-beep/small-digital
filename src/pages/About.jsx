@@ -62,7 +62,7 @@ const journeyTimeline = [
   {
     year: '2015',
     title: 'Company Founded',
-    desc: 'Rayon Web Solutions was founded with a vision to create innovative digital solutions for businesses of all sizes.',
+    desc: 'SmallDigital Web Solutions was founded with a vision to create innovative digital solutions for businesses of all sizes.',
     align: 'left',
   },
   {
