@@ -1,5 +1,3 @@
-import React from 'react';
-
 const caseStudies = [
   {
     title: "E-commerce Revenue Boost",
@@ -17,27 +15,29 @@ const caseStudies = [
   }
 ];
 
-export default function CaseStudies() {
+export default function CaseStudies({ isLight, onNavigate }) {
   return (
-    <section className="py-16 bg-white">
+    <section className={`case-studies-section py-16 ${
+      isLight ? "case-studies-light" : "case-studies-dark"
+    }`}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">Case Studies</h2>
-          <p className="text-gray-600">See the results we've achieved for our clients</p>
+          <h2 className="text-3xl font-bold mb-2">Case Studies</h2>
+          <p>See the results we've achieved for our clients</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {caseStudies.map((study, index) => (
-            <div key={index} className="border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <span className="text-xs font-semibold uppercase text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+            <div key={index} className="case-study-card rounded-2xl p-8 transition-shadow">
+              <span className="case-study-client text-xs font-semibold uppercase px-3 py-1 rounded-full">
                 {study.client}
               </span>
-              <h3 className="text-xl font-bold text-gray-800 mt-4 mb-2">{study.title}</h3>
+              <h3 className="text-xl font-bold mt-4 mb-2">{study.title}</h3>
               <p className="text-2xl font-extrabold text-green-600 mb-4">{study.result}</p>
-              <p className="text-gray-600 mb-6">{study.description}</p>
+              <p className="case-study-description mb-6">{study.description}</p>
               <div className="flex flex-wrap gap-2">
                 {study.tags.map((tag, idx) => (
-                  <span key={idx} className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
+                  <span key={idx} className="case-study-tag text-xs px-2 py-1 rounded">
                     #{tag}
                   </span>
                 ))}
@@ -45,6 +45,13 @@ export default function CaseStudies() {
             </div>
           ))}
         </div>
+        <button
+          type="button"
+          onClick={() => onNavigate("projects")}
+          className="case-study-portfolio-link"
+        >
+          Explore the project portfolio
+        </button>
       </div>
     </section>
   );

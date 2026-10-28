@@ -1,53 +1,113 @@
-import React, { useState } from 'react';
-import { FaWhatsapp, FaFacebookMessenger, FaPhone } from 'react-icons/fa';
-import { IoClose } from 'react-icons/io5';
+import { useState } from "react";
+import { MessageCircle, Send, X } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
-const FloatingButtons = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const whatsappNumber = "917070414390";
+const quickMessages = [
+  "I would like to discuss a website project.",
+  "I need help with digital marketing.",
+];
 
-  if (!isOpen) return null;
+function createWhatsAppUrl(message) {
+  const params = new URLSearchParams({ text: message });
+  return `https://wa.me/${whatsappNumber}?${params.toString()}`;
+}
+
+export default function FloatingButtons() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const openWhatsApp = (text) => {
+    const trimmedMessage = text.trim();
+    if (!trimmedMessage) return;
+    window.open(createWhatsAppUrl(trimmedMessage), "_blank", "noopener,noreferrer");
+  };
 
   return (
-    <div className="fixed bottom-5 right-5 flex flex-col gap-4 items-center z-50">
-    
-      <a
-        href="https://wa.me/7070414390"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl bg-[#25D366] shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-200"
-        title="WhatsApp"
-      >
-        <FaWhatsapp />
-      </a>
+    <div className="whatsapp-widget">
+      {isOpen && (
+        <section
+          className="whatsapp-panel"
+          role="dialog"
+          aria-labelledby="whatsapp-panel-title"
+        >
+          <div className="whatsapp-panel-header">
+            <span className="whatsapp-panel-icon" aria-hidden="true">
+              <FaWhatsapp />
+            </span>
+            <div>
+              <h2 id="whatsapp-panel-title">Chat with our team</h2>
+              <p>Continue the conversation on WhatsApp</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="whatsapp-panel-close"
+              aria-label="Close WhatsApp chat panel"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
 
-      {/* Messenger Button */}
-      <a
-        href="https://m.me/username"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl bg-[#0084FF] shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-200"
-        title="Messenger"
-      >
-        <FaFacebookMessenger />
-      </a>
+          <div className="whatsapp-panel-body">
+            <p className="whatsapp-chat-intro">
+              Hello! What would you like to talk about?
+            </p>
+            {quickMessages.map((quickMessage) => (
+              <button
+                type="button"
+                key={quickMessage}
+                className="whatsapp-quick-message"
+                onClick={() => openWhatsApp(quickMessage)}
+              >
+                {quickMessage}
+              </button>
+            ))}
 
-      <a
-        href="tel:7070414390"
-        className="w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl bg-[#FF5722] shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-200"
-        title="Call"
-      >
-        <FaPhone />
-      </a>
+            <form
+              className="whatsapp-message-form"
+              onSubmit={(event) => {
+                event.preventDefault();
+                openWhatsApp(message);
+              }}
+            >
+              <label className="sr-only" htmlFor="whatsapp-message">
+                Write a message
+              </label>
+              <input
+                id="whatsapp-message"
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                placeholder="Write your message..."
+                maxLength={500}
+              />
+              <button
+                type="submit"
+                aria-label="Continue to WhatsApp with your message"
+                disabled={!message.trim()}
+              >
+                <Send className="h-4 w-4" aria-hidden="true" />
+              </button>
+            </form>
+            <p className="whatsapp-disclaimer">
+              WhatsApp will open in a new tab; your message is not sent from this site.
+            </p>
+          </div>
+        </section>
+      )}
 
       <button
-        onClick={() => setIsOpen(false)}
-        className="w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl bg-[#FF0033] shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-200"
-        title="Close"
+        type="button"
+        className="whatsapp-launcher"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Close WhatsApp chat" : "Chat with us on WhatsApp"}
       >
-        <IoClose />
+        {isOpen
+          ? <X className="h-5 w-5" aria-hidden="true" />
+          : <MessageCircle className="h-5 w-5" aria-hidden="true" />}
+        <span>{isOpen ? "Close chat" : "Chat with us"}</span>
       </button>
     </div>
   );
-};
-
-export default FloatingButtons;
+}

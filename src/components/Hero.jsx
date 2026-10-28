@@ -1,8 +1,8 @@
-import React from "react";
-
-const Hero = () => {
+const Hero = ({ isLight }) => {
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20 bg-white">
+    <section className={`min-h-screen flex items-center justify-center px-6 py-20 ${
+      isLight ? "bg-white" : "bg-slate-950"
+    }`}>
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
 
         
@@ -11,14 +11,18 @@ const Hero = () => {
             WEB DEVELOPMENT SERVICES
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray-900">
+          <h1 className={`text-4xl md:text-6xl font-bold leading-tight ${
+            isLight ? "text-gray-900" : "text-white"
+          }`}>
             Build Your Business
             <span className="block text-blue-600">
               With a Modern Website
             </span>
           </h1>
 
-          <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-xl">
+          <p className={`mt-6 text-lg leading-relaxed max-w-xl ${
+            isLight ? "text-gray-600" : "text-slate-300"
+          }`}>
             I create fast, responsive and professional websites for
             businesses, startups and individuals using modern web
             technologies.
@@ -44,7 +48,9 @@ const Hero = () => {
           </div>
 
          
-          <div className="flex flex-wrap gap-6 mt-10 text-sm text-gray-600">
+          <div className={`flex flex-wrap gap-6 mt-10 text-sm ${
+            isLight ? "text-gray-600" : "text-slate-300"
+          }`}>
             <span>✓ Responsive Design</span>
             <span>✓ Fast Website</span>
             <span>✓ Modern UI</span>
@@ -53,7 +59,9 @@ const Hero = () => {
 
        
         <div className="flex justify-center">
-          <div className="w-full max-w-md bg-gray-100 rounded-3xl p-8 shadow-xl">
+          <div className={`w-full max-w-md rounded-3xl p-8 shadow-xl ${
+            isLight ? "bg-gray-100" : "bg-slate-800"
+          }`}>
 
             <div className="bg-white rounded-2xl p-6 shadow-md">
               <div className="flex gap-2 mb-6">
