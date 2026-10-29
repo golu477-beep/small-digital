@@ -25,16 +25,17 @@ function mergeDefaults(defaults, documents) {
 
 export default async function publicContentHandler(request, response) {
   try {
+    const requestPath = request.path || request.originalUrl?.split("?")[0] || "";
     await connectToDatabase();
 
-    if (request.baseUrl === "/api/projects") {
+    if (requestPath === "/api/projects") {
       const documents = await AdminProject.find().lean();
       const projects = mergeDefaults(defaultProjects, documents)
         .filter((project) => project.status === "completed");
       return response.json({ success: true, projects });
     }
 
-    if (request.baseUrl === "/api/testimonials") {
+    if (requestPath === "/api/testimonials") {
       const documents = await AdminTestimonial.find().lean();
       const testimonials = mergeDefaults(defaultTestimonials, documents)
         .filter((testimonial) => testimonial.isPublished !== false);

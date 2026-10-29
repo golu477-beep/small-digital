@@ -21,6 +21,15 @@ The Express server handles contact submissions at `POST /api/user` and newslette
 
 Copy `.env.example` to `.env` for local development and set `MONGODB_URI`. To receive contact-form email alerts, configure `MAIL_HOST`, `MAIL_PORT`, `MAIL_USER`, `MAIL_PASS`, and `CONTACT_EMAIL` with credentials from your SMTP provider. `MAIL_FROM` is optional and defaults to the SMTP username. Do not commit `.env` or expose SMTP credentials in client-side environment variables.
 
+## Payments
+
+The app can accept project deposits through Razorpay. Create a Razorpay account, add the live or test keys in `.env`, then use the project estimator/booking flow to generate a checkout session. The server exposes these endpoints:
+
+- `POST /api/payments/create-order` creates a Razorpay order with `amount`, `currency`, and optional `receipt`/customer metadata.
+- `POST /api/payments/verify` validates the `order_id|payment_id` signature returned by Razorpay.
+
+Keep the key pair in the server-only `.env` file and never expose it in frontend code or source control.
+
 ## Admin dashboard
 
 Visit `/admin` to sign in and manage contact inquiries, portfolio projects, and testimonials. The dashboard is disabled until all three server-only variables below are configured:
