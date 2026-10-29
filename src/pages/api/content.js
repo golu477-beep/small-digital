@@ -24,19 +24,26 @@ function mergeDefaults(defaults, documents) {
 }
 
 export default async function publicContentHandler(request, response) {
+  const requestPath = request.path || request.originalUrl?.split("?")[0] || "";
+
   try {
-    const requestPath = request.path || request.originalUrl?.split("?")[0] || "";
-    await connectToDatabase();
+    let documents = [];
+
+    try {
+      await connectToDatabase();
+    } catch (databaseError) {
+      console.warn("Using built-in public content because MongoDB is unavailable:", databaseError.message);
+    }
 
     if (requestPath === "/api/projects") {
-      const documents = await AdminProject.find().lean();
+      documents = await AdminProject.find().lean().catch(() => []);
       const projects = mergeDefaults(defaultProjects, documents)
         .filter((project) => project.status === "completed");
       return response.json({ success: true, projects });
     }
 
     if (requestPath === "/api/testimonials") {
-      const documents = await AdminTestimonial.find().lean();
+      documents = await AdminTestimonial.find().lean().catch(() => []);
       const testimonials = mergeDefaults(defaultTestimonials, documents)
         .filter((testimonial) => testimonial.isPublished !== false);
       return response.json({ success: true, testimonials });

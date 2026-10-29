@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function CTASection() {
   return (
     <section className="py-20 bg-gray-900 text-white">

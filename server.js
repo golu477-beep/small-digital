@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import crypto from 'node:crypto';
+import process from 'node:process';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import { fileURLToPath } from 'node:url';
@@ -18,11 +19,13 @@ const razorpay =
       })
     : null;
 
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
 const isProduction = globalThis.process.argv.includes('--production') || globalThis.process.env.NODE_ENV === 'production';
 const port = Number(globalThis.process?.env?.PORT) || 5173;
 const app = express();
 
 app.use(express.json({ limit: '16kb' }));
+app.use(express.static(path.join(projectRoot, 'public')));
 app.post('/api/user', contactHandler);
 app.post('/api/newsletter', newsletterHandler);
 app.use('/api/admin', adminHandler);
