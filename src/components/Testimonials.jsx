@@ -10,8 +10,12 @@ export default function Testimonials({ isLight }) {
 
   useEffect(() => {
     let active = true;
-    fetch('/api/testimonials')
+    fetch('/api/testimonials', {
+      cache: 'no-store',
+      headers: { Accept: 'application/json' },
+    })
       .then(async (response) => {
+        if (response.status === 304) return;
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || "Unable to load testimonials.");
         if (!Array.isArray(result.testimonials)) throw new Error("Testimonial response was invalid.");

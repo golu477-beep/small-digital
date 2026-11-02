@@ -87,8 +87,12 @@ export default function OurProjects({ isLight }) {
 
   useEffect(() => {
     let active = true;
-    fetch('/api/projects')
+    fetch('/api/projects', {
+      cache: 'no-store',
+      headers: { Accept: 'application/json' },
+    })
       .then(async (response) => {
+        if (response.status === 304) return;
         const result = await response.json();
         if (!response.ok) throw new Error(result.message || "Unable to load portfolio projects.");
         if (!Array.isArray(result.projects)) throw new Error("Portfolio response was invalid.");

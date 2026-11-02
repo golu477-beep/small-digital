@@ -38,12 +38,15 @@ const emptyTestimonial = {
 async function adminRequest(path, options = {}) {
   const response = await fetch(`/api/admin${path}`, {
     ...options,
+    cache: "no-store",
     credentials: "same-origin",
     headers: {
+      Accept: "application/json",
       ...(options.body ? { "Content-Type": "application/json" } : {}),
       ...options.headers,
     },
   });
+  if (response.status === 304) return {};
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
     const error = new Error(result.message || "Admin request failed.");
