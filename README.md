@@ -1,53 +1,48 @@
-# React + Vite
+# Small Digital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is split into two independent apps:
 
-Currently, two official plugins are available:
+- Frontend: `frontend/` (React + Vite)
+- Backend: `backend/` (Express API server)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Run locally
 
-## React Compiler
+From the project root:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## Contact and newsletter backend
-
-The Express server handles contact submissions at `POST /api/user` and newsletter subscriptions at `POST /api/newsletter`. Both persist data with MongoDB; newsletter email addresses are normalized and unique.
-
-Copy `.env.example` to `.env` for local development and set `MONGODB_URI`. To receive contact-form email alerts, configure `MAIL_HOST`, `MAIL_PORT`, `MAIL_USER`, `MAIL_PASS`, and `CONTACT_EMAIL` with credentials from your SMTP provider. `MAIL_FROM` is optional and defaults to the SMTP username. Do not commit `.env` or expose SMTP credentials in client-side environment variables.
-
-## Payments
-
-The app can accept project deposits through Razorpay. Create a Razorpay account, add the live or test keys in `.env`, then use the project estimator/booking flow to generate a checkout session. The server exposes these endpoints:
-
-- `POST /api/payments/create-order` creates a Razorpay order with `amount`, `currency`, and optional `receipt`/customer metadata.
-- `POST /api/payments/verify` validates the `order_id|payment_id` signature returned by Razorpay.
-
-Keep the key pair in the server-only `.env` file and never expose it in frontend code or source control.
-
-## Admin dashboard
-
-Visit `/admin` to sign in and manage contact inquiries, portfolio projects, and testimonials. The dashboard is disabled until all three server-only variables below are configured:
-
-- `ADMIN_EMAIL`: the single admin account's email address.
-- `ADMIN_PASSWORD_HASH`: a bcrypt hash of the admin password (never store the plain password here).
-- `ADMIN_JWT_SECRET`: a randomly generated secret with at least 32 characters.
-
-Generate a password hash locally with the installed `bcryptjs` package:
-
-```sh
-node --input-type=module -e "import bcrypt from 'bcryptjs'; import { createInterface } from 'node:readline/promises'; const rl = createInterface({ input: process.stdin, output: process.stdout }); const password = await rl.question('Admin password: '); rl.close(); console.log(await bcrypt.hash(password, 12));"
+```bash
+npm install
+npm run dev
 ```
 
-Generate a JWT secret locally with Node:
+This starts:
 
-```sh
-node --input-type=module -e "import { randomBytes } from 'node:crypto'; console.log(randomBytes(32).toString('hex'));"
+- Frontend on `http://localhost:5173`
+- Backend on `http://localhost:3000`
+
+The frontend uses Vite's proxy so browser requests to `/api/*` are forwarded to the backend.
+
+## Frontend commands
+
+```bash
+npm --prefix frontend run dev
+npm --prefix frontend run build
+npm --prefix frontend run preview
 ```
 
-Put the resulting values only in the server's environment or an uncommitted `.env` file. Admin sessions use an eight-hour, HttpOnly, SameSite=Strict cookie; no token is stored in browser local storage. Keep MongoDB configured and reachable for sign-in data, leads, and content management. Admin project/testimonial changes are reflected in the public portfolio and client-stories sections.
+## Backend commands
+
+```bash
+npm --prefix backend run dev
+npm --prefix backend run start
+```
+
+## Environment variables
+
+Create a `.env` in the backend folder, not in the frontend app, and set the server-only variables required for MongoDB, email, and Razorpay:
+
+- `MONGODB_URI`
+- `MAIL_HOST`, `MAIL_PORT`, `MAIL_USER`, `MAIL_PASS`, `CONTACT_EMAIL`
+- `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`
+- `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `ADMIN_JWT_SECRET`
+
+The backend exposes the contact, newsletter, payment, and admin APIs. The frontend only talks to the backend through `/api/*` routes.

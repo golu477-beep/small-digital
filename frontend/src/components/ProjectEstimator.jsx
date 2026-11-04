@@ -88,9 +88,19 @@ export default function ProjectEstimator({ isLight, onNavigate }) {
         }),
       });
 
-      const result = await response.json();
+      const rawText = await response.text();
+      let result = null;
+
+      if (rawText) {
+        try {
+          result = JSON.parse(rawText);
+        } catch {
+          throw new Error("The payment server returned an invalid response. Please make sure the backend is running.");
+        }
+      }
+
       if (!response.ok) {
-        throw new Error(result.message || "Unable to start checkout");
+        throw new Error(result?.message || `Unable to start checkout (HTTP ${response.status}).`);
       }
 
       const razorpay = new window.Razorpay({
@@ -111,9 +121,19 @@ export default function ProjectEstimator({ isLight, onNavigate }) {
             }),
           });
 
-          const verificationResult = await verificationResponse.json();
+          const verificationText = await verificationResponse.text();
+          let verificationResult = null;
 
-          if (!verificationResponse.ok || !verificationResult.valid) {
+          if (verificationText) {
+            try {
+              verificationResult = JSON.parse(verificationText);
+            } catch {
+              setPaymentStatus('Payment was captured, but the verification response was invalid. Please contact the team.');
+              return;
+            }
+          }
+
+          if (!verificationResponse.ok || !verificationResult?.valid) {
             setPaymentStatus("Payment was captured but verification failed. Please reach out to the team.");
             return;
           }

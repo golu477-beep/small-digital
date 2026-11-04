@@ -16,16 +16,26 @@ export default function Testimonials({ isLight }) {
     })
       .then(async (response) => {
         if (response.status === 304) return;
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.message || "Unable to load testimonials.");
-        if (!Array.isArray(result.testimonials)) throw new Error("Testimonial response was invalid.");
+
+        const contentType = response.headers.get('content-type') || '';
+        const rawText = await response.text();
+        const result = rawText && contentType.includes('application/json') ? JSON.parse(rawText) : null;
+
+        if (!response.ok) {
+          throw new Error(result?.message || `Unable to load testimonials (HTTP ${response.status}).`);
+        }
+
+        if (!result || !Array.isArray(result.testimonials)) {
+          throw new Error('Testimonial response was invalid.');
+        }
+
         if (active) {
           setTestimonials(result.testimonials);
           setActiveIndex(0);
         }
       })
       .catch((error) => {
-        console.warn("Unable to load managed testimonials; showing built-in testimonials.", error);
+        console.warn('Unable to load managed testimonials; showing built-in testimonials.', error);
       });
     return () => { active = false; };
   }, []);

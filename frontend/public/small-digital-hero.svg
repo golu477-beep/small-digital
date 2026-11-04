@@ -1,0 +1,21 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 340) rotate(90) scale(550 900)">
+      <stop stop-color="#1C3153"/>
+      <stop offset="0.6" stop-color="#0B1326"/>
+      <stop offset="1" stop-color="#050811"/>
+    </radialGradient>
+    <linearGradient id="lineGrad" x1="0" y1="0" x2="1400" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E5FF" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#00E5FF" stop-opacity="0.9"/>
+      <stop offset="0.6" stop-color="#8E24AA" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#D500F9" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bgGlow)"/>
+  <circle cx="1200" cy="180" r="220" fill="#00E5FF" fill-opacity="0.12"/>
+  <circle cx="420" cy="680" r="260" fill="#8E24AA" fill-opacity="0.12"/>
+  <circle cx="1110" cy="610" r="310" fill="#29B6F6" fill-opacity="0.1"/>
+  <path d="M180 740C520 480 760 350 1050 360C1270 370 1390 470 1490 610" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M260 260C420 120 580 100 740 180C870 240 1050 260 1180 210" stroke="#00E5FF" stroke-opacity="0.35" stroke-width="2" stroke-linecap="round"/>
+</svg>

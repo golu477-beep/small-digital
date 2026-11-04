@@ -42,12 +42,6 @@ export default async function handler(request, response) {
     return response.status(400).json({ message: 'A valid payment amount is required.' });
   }
 
-  if (!razorpay) {
-    return response.status(503).json({
-      message: 'Payment gateway is not configured. Add RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET to your environment.',
-    });
-  }
-
   try {
     const order = await razorpay.orders.create({
       amount: Math.round(amount),

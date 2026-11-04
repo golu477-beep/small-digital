@@ -1,42 +1,20 @@
 {
-  "name": "golu",
+  "name": "small-digital",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "node server.js",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "node server.js --production"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "bcryptjs": "^3.0.3",
-    "dotenv": "^18.0.9",
-    "express": "^5.2.1",
-    "express-rate-limit": "^8.7.1",
-    "jsonwebtoken": "^9.0.3",
-    "lucide-react": "^1.47.0",
-    "mongodb": "^7.6.0",
-    "mongoose": "^9.10.1",
-    "nodemailer": "^10.2.1",
-    "razorpay": "^2.9.8",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-icons": "^5.7.0",
-    "tailwindcss": "^4.3.3",
-    "xlsx": "^0.18.5"
+    "dev": "node scripts/dev.js",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "start": "npm --prefix backend run start",
+    "frontend": "npm --prefix frontend run dev",
+    "backend": "npm --prefix backend run dev"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^6.1.0",
-    "eslint": "^10.9.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.4",
-    "globals": "^17.11.0",
-    "vite": "^8.2.2"
+    "concurrently": "^9.0.1"
   }
 }
